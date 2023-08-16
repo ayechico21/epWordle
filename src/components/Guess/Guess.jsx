@@ -1,25 +1,20 @@
 import React from "react";
 import { styled } from "styled-components";
+import { range } from "../../utils";
 
-function Guess() {
+function Guess({ guess }) {
+  const guessLength = guess.length;
+
   return (
     <Wrapper>
-      <GuessWrapper>
-        <Cell>A</Cell>
-        <Cell>A</Cell>
-        <Cell>A</Cell>
-        <Cell>A</Cell>
-        <Cell>A</Cell>
-      </GuessWrapper>
+      {range(guessLength).map((_, index) => (
+        <Cell key={index}>{guess[index]}</Cell>
+      ))}
     </Wrapper>
   );
 }
 
-const Wrapper = styled.article`
-  display: flex;
-  justify-content: center;
-`;
-const GuessWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   gap: 10px;
 `;

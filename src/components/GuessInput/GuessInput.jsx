@@ -1,12 +1,17 @@
 import React from "react";
 import { styled } from "styled-components";
 
-function GuessInput() {
+function GuessInput({ addGuess }) {
   const [guess, setGuess] = React.useState("");
 
   const handleGuessInput = (event) => {
-    console.log("in handleGuessInput");
     setGuess(event.target.value);
+  };
+  const handleGuessSubmit = (event) => {
+    if (event.key === "Enter") {
+      addGuess(guess);
+      setGuess("");
+    }
   };
   return (
     <Wrapper>
@@ -16,6 +21,7 @@ function GuessInput() {
         id="guess-input"
         value={guess}
         onChange={handleGuessInput}
+        onKeyDown={handleGuessSubmit}
       />
     </Wrapper>
   );
