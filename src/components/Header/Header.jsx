@@ -12,7 +12,7 @@ function Header() {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  border-bottom: 5px dotted red;
+  border-bottom: 2px solid hsl(240, 100%, 90%);
 `;
 
 export default Header;
