@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import { COLORS } from "../../constants";
 
 function Header() {
   return (
@@ -12,7 +13,7 @@ function Header() {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  border-bottom: 2px solid hsl(240, 100%, 90%);
+  border-bottom: 2px solid ${COLORS.primaryTheme};
 `;
 
 export default Header;

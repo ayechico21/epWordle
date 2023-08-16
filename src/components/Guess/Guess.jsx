@@ -1,15 +1,16 @@
 import React from "react";
 import { styled } from "styled-components";
 import { range } from "../../utils";
+import { COLORS } from "../../constants";
 
-function Guess({ guess }) {
-  const guessLength = guess.length;
-
+function Guess({ guess, wordLength }) {
   return (
     <Wrapper>
-      {range(guessLength).map((_, index) => (
-        <Cell key={index}>{guess[index]}</Cell>
-      ))}
+      {guess &&
+        range(wordLength).map((_, index) => (
+          <Cell key={index}>{guess[index]}</Cell>
+        ))}
+      {!guess && range(wordLength).map((_, index) => <Cell key={index} />)}
     </Wrapper>
   );
 }
@@ -23,7 +24,7 @@ const Cell = styled.span`
   display: inline-flex;
   height: var(--cell-size);
   width: var(--cell-size);
-  border: 2px solid grey;
+  border: 2px solid ${COLORS.secondaryTheme};
   justify-content: center;
   align-items: center;
 `;

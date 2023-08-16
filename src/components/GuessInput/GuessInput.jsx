@@ -1,32 +1,33 @@
 import React from "react";
 import { styled } from "styled-components";
+import { COLORS } from "../../constants";
 
-function GuessInput({ addGuess }) {
+function GuessInput({ addGuess, wordLength }) {
   const [guess, setGuess] = React.useState("");
 
   const handleGuessInput = (event) => {
-    setGuess(event.target.value);
+    setGuess(event.target.value.toUpperCase());
   };
-  const handleGuessSubmit = (event) => {
-    if (event.key === "Enter") {
-      addGuess(guess);
-      setGuess("");
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (guess.length < wordLength) return; /**Word limit not yet met */
+    addGuess(guess);
+    setGuess("");
   };
   return (
-    <Wrapper>
+    <FormWrapper onSubmit={handleSubmit}>
       <label htmlFor="guess-input">Your Guess </label>
       <Input
         type="text"
         id="guess-input"
         value={guess}
         onChange={handleGuessInput}
-        onKeyDown={handleGuessSubmit}
+        maxLength={wordLength}
       />
-    </Wrapper>
+    </FormWrapper>
   );
 }
-const Wrapper = styled.article`
+const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +35,7 @@ const Wrapper = styled.article`
 
 const Input = styled.input`
   max-width: 300px;
-  border: 2px solid hsl(240, 100%, 90%);
+  border: 2px solid ${COLORS.primaryTheme};
 `;
 
 export default GuessInput;
