@@ -35,6 +35,10 @@ const FormWrapper = styled.form`
 
 const Input = styled.input`
   max-width: 300px;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 5px;
+  margin-top: 10px;
   border: 2px solid ${COLORS.primaryTheme};
 `;
 
