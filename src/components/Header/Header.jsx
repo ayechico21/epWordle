@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { COLORS } from "../../constants";
 import { Info, RefreshCw, Settings } from "react-feather";
 import IconButton from "../IconButton";
+import Modal from "../Modal/Modal";
 
 function Header() {
   return (
@@ -11,6 +12,7 @@ function Header() {
       <Heading>Wordle</Heading>
       <IconButton icon={<Settings />} />
       <IconButton icon={<RefreshCw />} />
+      <Modal handleDismiss={() => console.log("Dismiss")} />
     </Wrapper>
   );
 }
