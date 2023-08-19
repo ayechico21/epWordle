@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
 
-function IconButton({ icon }) {
-  return <Icon>{icon}</Icon>;
+function IconButton({ icon, ...delegated }) {
+  return <Icon {...delegated}>{icon}</Icon>;
 }
 const Icon = styled.button``;
 export default IconButton;

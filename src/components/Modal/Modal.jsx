@@ -21,7 +21,7 @@ function Modal({ handleDismiss, children }) {
         <Button onClick={handleDismiss}>
           <Close />
         </Button>
-        Children are here{children}
+        {children}
       </Dialog>
     </Wrapper>
   );
