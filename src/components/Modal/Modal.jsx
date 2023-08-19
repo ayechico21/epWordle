@@ -4,8 +4,19 @@ import { X as Close } from "react-feather";
 import { styled } from "styled-components";
 
 function Modal({ handleDismiss, children }) {
+  React.useEffect(() => {
+    const handleKeydown = (event) => {
+      if (event.key === "Escape") {
+        handleDismiss();
+      }
+    };
+    window.addEventListener("keydown", handleKeydown);
+
+    /**CleanUp Function */
+    return () => window.removeEventListener("keydown", handleKeydown);
+  }, [handleDismiss]);
   return (
-    <Wrapper>
+    <Wrapper onClick={handleDismiss}>
       <Dialog>
         <Button onClick={handleDismiss}>
           <Close />
