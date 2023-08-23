@@ -16,7 +16,8 @@ function Modal({ handleDismiss, children }) {
     return () => window.removeEventListener("keydown", handleKeydown);
   }, [handleDismiss]);
   return (
-    <Wrapper onClick={handleDismiss}>
+    <Wrapper>
+      <BackDrop onClick={handleDismiss} />
       <Dialog>
         <Button onClick={handleDismiss}>
           <Close />
@@ -35,13 +36,18 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(255 52% 68%/0.75);
+`;
+const BackDrop = styled.div`
+  position: absolute;
+  inset: 0;
+  background: hsl(255deg 52% 68% / 0.75);
 `;
 const Dialog = styled.div`
   border: 2px dotted green;
   position: relative;
   padding: 16px;
-  background-color: red;
+  background-color: hsl(0, 0%, 100%);
+  max-width: 400px;
 `;
 const Button = styled.button`
   position: absolute;

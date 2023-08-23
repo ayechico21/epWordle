@@ -9,12 +9,13 @@ import { useToggle } from "../../hooks";
 function Header() {
   const [isInfo, toggleInfo] = useToggle(false);
   const [isSettings, toggleSettings] = useToggle(false);
+  const [isRefresh, toggleRefresh] = useToggle(false);
   return (
     <Wrapper>
       <IconButton icon={<Info />} onClick={toggleInfo} />
       <Heading>Wordle</Heading>
       <IconButton icon={<Settings />} onClick={toggleSettings} />
-      <IconButton icon={<RefreshCw />} />
+      <IconButton icon={<RefreshCw />} onClick={toggleRefresh} />
 
       {isInfo && (
         <Modal handleDismiss={toggleInfo}>
@@ -29,6 +30,13 @@ function Header() {
       {isSettings && (
         <Modal handleDismiss={toggleSettings}>
           <p>SETTINGS</p>
+        </Modal>
+      )}
+      {isRefresh && (
+        <Modal handleDismiss={toggleRefresh}>
+          <p>You sure you want to reload???</p>
+          <button>Reload</button>
+          <button onClick={toggleRefresh}>Cancel</button>
         </Modal>
       )}
     </Wrapper>
