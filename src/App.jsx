@@ -3,7 +3,6 @@ import Game from "./components/Game";
 import React from "react";
 import { words } from "./constants";
 import { styled } from "styled-components";
-import { useToggle } from "./hooks";
 
 function App() {
   const [wordLength, setWordLength] = React.useState(5);

@@ -1,8 +1,10 @@
 import { styled } from "styled-components";
-import { range } from "../../utils";
+import { checkGuess, range } from "../../utils";
 import { COLORS } from "../../constants";
 
 function Guess({ guess, wordLength }) {
+  const characterStatus = checkGuess(guess, "Hello");
+  if (characterStatus) console.log(characterStatus);
   return (
     <Wrapper>
       {guess &&
