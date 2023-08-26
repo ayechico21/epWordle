@@ -1,8 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
 import { COLORS } from "../../constants";
+import { AppContext } from "../../App";
 
-function GuessInput({ addGuess, wordLength }) {
+function GuessInput({ addGuess }) {
+  const { wordLength } = React.useContext(AppContext);
   const [guess, setGuess] = React.useState("");
 
   const handleGuessInput = (event) => {

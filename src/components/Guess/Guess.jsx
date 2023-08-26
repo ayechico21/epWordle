@@ -1,9 +1,12 @@
+import React from "react";
 import { styled } from "styled-components";
 import { checkGuess, range } from "../../utils";
 import { COLORS } from "../../constants";
+import { AppContext } from "../../App";
+function Guess({ guess }) {
+  const { answer, wordLength } = React.useContext(AppContext);
 
-function Guess({ guess, wordLength }) {
-  const characterStatus = checkGuess(guess, "Hello");
+  const characterStatus = checkGuess(guess, answer);
   if (characterStatus) console.log(characterStatus);
   return (
     <Wrapper>

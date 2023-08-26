@@ -2,7 +2,7 @@ import React from "react";
 import GuessInput from "../GuessInput";
 import Guesses from "../Guesses";
 
-function Game({ wordLength, numOfChances }) {
+function Game() {
   const [guessList, setGuessList] = React.useState([]);
 
   const addGuess = (guess) => {
@@ -12,12 +12,8 @@ function Game({ wordLength, numOfChances }) {
 
   return (
     <>
-      <Guesses
-        guessList={guessList}
-        numOfChances={numOfChances}
-        wordLength={wordLength}
-      />
-      <GuessInput addGuess={addGuess} wordLength={wordLength} />
+      <Guesses guessList={guessList} />
+      <GuessInput addGuess={addGuess} />
     </>
   );
 }

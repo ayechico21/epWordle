@@ -1,16 +1,19 @@
+import React from "react";
 import { styled } from "styled-components";
 import Guess from "../Guess";
 import { range } from "../../utils";
+import { AppContext } from "../../App";
 
-function Guesses({ guessList, numOfChances, wordLength }) {
+function Guesses({ guessList }) {
+  const { numOfChances } = React.useContext(AppContext);
   const guessListLength = guessList.length;
   return (
     <Wrapper>
       {range(guessListLength).map((_, index) => (
-        <Guess key={index} guess={guessList[index]} wordLength={wordLength} />
+        <Guess key={index} guess={guessList[index]} />
       ))}
       {range(guessListLength, numOfChances).map((_, index) => (
-        <Guess key={index} guess="" wordLength={wordLength} />
+        <Guess key={index} guess="" />
       ))}
     </Wrapper>
   );
