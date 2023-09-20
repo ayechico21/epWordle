@@ -24,7 +24,7 @@ function GuessInput({ addGuess }) {
         id="guess-input"
         value={guess}
         onChange={handleGuessInput}
-        maxLength={wordLength}
+        maxLength={wordLength} /*max valid guess length */
       />
     </FormWrapper>
   );

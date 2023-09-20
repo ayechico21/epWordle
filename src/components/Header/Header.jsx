@@ -15,7 +15,7 @@ function Header() {
       <IconButton icon={<Info />} onClick={toggleInfo} />
       <Heading>Wordle</Heading>
       <IconButton icon={<Settings />} onClick={toggleSettings} />
-      <IconButton icon={<RefreshCw />} onClick={toggleRefresh} />
+      {/* <IconButton icon={<RefreshCw />} onClick={toggleRefresh} /> */}
 
       {isInfo && (
         <Modal handleDismiss={toggleInfo}>

@@ -27,7 +27,6 @@ export function checkGuess(guess, answer) {
 
   guessChars.map((char, index) => {
     const findIndex = answerChars.findIndex((val) => val === char);
-    console.log(findIndex);
     if (findIndex < 0) return; /**character not present */
     if (findIndex === index || answerChars[index] === guessChars[index])
       return; /**correctly placed element */

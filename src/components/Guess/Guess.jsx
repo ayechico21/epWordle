@@ -6,14 +6,19 @@ import { AppContext } from "../../App";
 function Guess({ guess }) {
   const { answer, wordLength } = React.useContext(AppContext);
 
-  const characterStatus = checkGuess(guess, answer);
-  if (characterStatus) console.log(characterStatus);
+  const characters = checkGuess(guess, answer);
+  if (characters) console.log(characters);
   return (
     <Wrapper>
       {guess &&
-        range(wordLength).map((_, index) => (
-          <Cell key={index}>{guess[index]}</Cell>
-        ))}
+        range(wordLength).map((_, index) => {
+          const color = COLORS[`${characters[index].status}`];
+          return (
+            <Cell key={index} style={{ "--cell-color": color }}>
+              {guess[index]}
+            </Cell>
+          );
+        })}
       {!guess && range(wordLength).map((_, index) => <Cell key={index} />)}
     </Wrapper>
   );
@@ -31,6 +36,7 @@ const Cell = styled.span`
   border: 2px solid ${COLORS.secondaryTheme};
   justify-content: center;
   align-items: center;
+  background-color: var(--cell-color);
 `;
 
 export default Guess;
