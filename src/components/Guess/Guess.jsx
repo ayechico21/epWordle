@@ -14,7 +14,10 @@ function Guess({ guess }) {
         range(wordLength).map((_, index) => {
           const color = COLORS[`${characters[index].status}`];
           return (
-            <Cell key={index} style={{ "--cell-color": color }}>
+            <Cell
+              key={index}
+              style={{ "--cell-color": color, "--border-color": color }}
+            >
               {guess[index]}
             </Cell>
           );
@@ -30,10 +33,11 @@ const Wrapper = styled.div`
 `;
 const Cell = styled.span`
   --cell-size: 3rem;
+  --border-color: ${COLORS.secondaryTheme}; /**default border color */
   display: inline-flex;
   height: var(--cell-size);
   width: var(--cell-size);
-  border: 2px solid ${COLORS.secondaryTheme};
+  border: 2px solid var(--border-color);
   justify-content: center;
   align-items: center;
   background-color: var(--cell-color);

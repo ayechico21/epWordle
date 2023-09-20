@@ -23,6 +23,6 @@ const Wrapper = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin: 40px 0;
+  margin-top: 40px;
 `;
 export default Guesses;
