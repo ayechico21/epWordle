@@ -1,3 +1,5 @@
+import { words } from "./constants";
+
 export const range = (start, end, step = 1) => {
   if (end === undefined) {
     end = start;
@@ -34,4 +36,9 @@ export function checkGuess(guess, answer) {
   });
 
   return guessStatus;
+}
+
+export function validGuess(guess) {
+  const wordLength = guess.length;
+  return words[wordLength].includes(guess);
 }

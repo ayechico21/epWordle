@@ -1,7 +1,6 @@
 import React from "react";
 import GuessInput from "../GuessInput";
 import Guesses from "../Guesses";
-import Keyboard from "../Keyboard";
 import styled from "styled-components";
 import GameProvider from "../Providers/GameProvider";
 
@@ -11,7 +10,6 @@ function Game() {
       <GameProvider>
         <Guesses />
         <GuessInput />
-        <Keyboard />
       </GameProvider>
     </Wrapper>
   );

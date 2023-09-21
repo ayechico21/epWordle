@@ -5,6 +5,8 @@ import { Info, RefreshCw, Settings } from "react-feather";
 import IconButton from "../IconButton";
 import Modal from "../Modal";
 import { useToggle } from "../../hooks";
+import SettingsModal from "../Modals/SettingsModal";
+import InfoModal from "../Modals/InfoModal";
 
 function Header() {
   const [isInfo, toggleInfo] = useToggle(false);
@@ -19,17 +21,12 @@ function Header() {
 
       {isInfo && (
         <Modal handleDismiss={toggleInfo}>
-          <p>
-            In Wordle, users have 6 attempts to guess a 5-letter word.
-            You&apos;re helped along the way by ruling out letters that
-            aren&apos;t in the word, and being told whether the correct letters
-            are in the correct location or not.
-          </p>
+          <InfoModal />
         </Modal>
       )}
       {isSettings && (
         <Modal handleDismiss={toggleSettings}>
-          <p>SETTINGS</p>
+          <SettingsModal handleDismiss={toggleSettings} />
         </Modal>
       )}
       {isRefresh && (

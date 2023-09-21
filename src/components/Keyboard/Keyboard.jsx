@@ -2,6 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 function Keyboard() {
+  React.useEffect(() => {
+    const handleKeyPress = (e) => {
+      console.log(e.key);
+    };
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, []);
+
   return (
     <Wrapper>
       {keys.map((row, rowIndex) => (

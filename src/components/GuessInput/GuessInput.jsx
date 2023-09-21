@@ -6,18 +6,9 @@ import { GameContext } from "../Providers/GameProvider";
 
 function GuessInput() {
   const { wordLength } = React.useContext(AppContext);
-  const { addGuess } = React.useContext(GameContext);
-  const [guess, setGuess] = React.useState("");
+  const { guess, handleGuessInput, handleSubmit } =
+    React.useContext(GameContext);
 
-  const handleGuessInput = (event) => {
-    setGuess(event.target.value.toUpperCase());
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (guess.length < wordLength) return; /**Word limit not yet met */
-    addGuess(guess);
-    setGuess("");
-  };
   return (
     <FormWrapper onSubmit={handleSubmit}>
       <label htmlFor="guess-input">Your Guess </label>

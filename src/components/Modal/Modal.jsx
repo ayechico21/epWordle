@@ -2,6 +2,7 @@ import React from "react";
 import { X as Close } from "react-feather";
 
 import { styled } from "styled-components";
+import { COLORS } from "../../constants";
 
 function Modal({ handleDismiss, children }) {
   React.useEffect(() => {
@@ -40,14 +41,13 @@ const Wrapper = styled.div`
 const BackDrop = styled.div`
   position: absolute;
   inset: 0;
-  background: hsl(255deg 52% 68% / 0.75);
+  background: hsl(0deg 0% 0% / 0.75);
 `;
 const Dialog = styled.div`
-  border: 2px dotted green;
+  border: 6px groove ${COLORS.primaryTheme};
   position: relative;
   padding: 16px;
   background-color: hsl(0, 0%, 100%);
-  max-width: 400px;
 `;
 const Button = styled.button`
   position: absolute;
@@ -57,5 +57,6 @@ const Button = styled.button`
   cursor: pointer;
   background: transparent;
   border: none;
+  color: hsl(0, 0%, 100%);
 `;
 export default Modal;

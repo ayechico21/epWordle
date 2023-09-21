@@ -16,7 +16,15 @@ function AppProvider({ children }) {
   }, [wordLength]);
 
   return (
-    <AppContext.Provider value={{ wordLength, numOfChances, answer }}>
+    <AppContext.Provider
+      value={{
+        wordLength,
+        numOfChances,
+        answer,
+        setWordLength,
+        setNumofChances,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
