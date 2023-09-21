@@ -8,6 +8,7 @@ import {
 } from "react-feather";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
+import { ToastContext } from "../Providers/ToastProvider";
 
 const ICONS_BY_VARIANT = {
   notice: Info,
@@ -16,16 +17,14 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast() {
-  const message = "Invalid word";
-  const variant = "error";
+function Toast({ message, variant, id }) {
   const Icon = ICONS_BY_VARIANT[variant];
-
+  const { removeToast } = React.useContext(ToastContext);
   return (
     <Wrapper>
       <Icon />
       <Message>{message}</Message>
-      <CloseButton>
+      <CloseButton onClick={() => removeToast(id)}>
         <X />
       </CloseButton>
     </Wrapper>
