@@ -24,7 +24,9 @@ const KeyRow = styled.div`
   gap: 8px;
   margin: 8px;
 `;
-const Button = styled.button``;
+const Button = styled.button`
+  padding: 5px 10px;
+`;
 const XLButton = styled(Button)``;
 
 const keys = [

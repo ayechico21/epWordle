@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import { checkGuess, range } from "../../utils";
 import { COLORS } from "../../constants";
-import { AppContext } from "../../App";
+import { AppContext } from "../Providers/AppProvider";
 function Guess({ guess }) {
   const { answer, wordLength } = React.useContext(AppContext);
 

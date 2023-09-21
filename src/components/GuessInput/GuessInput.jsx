@@ -1,10 +1,12 @@
 import React from "react";
 import { styled } from "styled-components";
 import { COLORS } from "../../constants";
-import { AppContext } from "../../App";
+import { AppContext } from "../Providers/AppProvider";
+import { GameContext } from "../Providers/GameProvider";
 
-function GuessInput({ addGuess }) {
+function GuessInput() {
   const { wordLength } = React.useContext(AppContext);
+  const { addGuess } = React.useContext(GameContext);
   const [guess, setGuess] = React.useState("");
 
   const handleGuessInput = (event) => {

@@ -2,10 +2,12 @@ import React from "react";
 import { styled } from "styled-components";
 import Guess from "../Guess";
 import { range } from "../../utils";
-import { AppContext } from "../../App";
+import { AppContext } from "../Providers/AppProvider";
+import { GameContext } from "../Providers/GameProvider";
 
-function Guesses({ guessList }) {
+function Guesses() {
   const { numOfChances } = React.useContext(AppContext);
+  const { guessList } = React.useContext(GameContext);
   const guessListLength = guessList.length;
   return (
     <Wrapper>

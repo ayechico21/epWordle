@@ -3,20 +3,16 @@ import GuessInput from "../GuessInput";
 import Guesses from "../Guesses";
 import Keyboard from "../Keyboard";
 import styled from "styled-components";
+import GameProvider from "../Providers/GameProvider";
 
 function Game() {
-  const [guessList, setGuessList] = React.useState([]);
-
-  const addGuess = (guess) => {
-    const nextGuessList = [...guessList, guess];
-    setGuessList(nextGuessList);
-  };
-
   return (
     <Wrapper>
-      <Guesses guessList={guessList} />
-      <GuessInput addGuess={addGuess} />
-      <Keyboard />
+      <GameProvider>
+        <Guesses />
+        <GuessInput />
+        <Keyboard />
+      </GameProvider>
     </Wrapper>
   );
 }
