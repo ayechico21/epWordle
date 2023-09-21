@@ -58,5 +58,9 @@ const Button = styled.button`
   background: transparent;
   border: none;
   color: hsl(0, 0%, 100%);
+  transition: All 0.2s;
+  &:hover {
+    transform: scale(1.5) rotate(90deg);
+  }
 `;
 export default Modal;

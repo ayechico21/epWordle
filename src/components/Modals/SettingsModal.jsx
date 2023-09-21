@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { AppContext } from "../Providers/AppProvider";
+import { COLORS } from "../../constants";
 
 function SettingsModal({ handleDismiss }) {
   const { wordLength, setWordLength, numOfChances, setNumofChances } =
@@ -62,5 +63,14 @@ const FormRow = styled.div`
 const Input = styled.input`
   max-width: 50px;
 `;
-const ApplyButton = styled.button``;
+const ApplyButton = styled.button`
+  background-color: ${COLORS.secondaryTheme};
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  transition: All 0.2s;
+  &:hover {
+    background-color: ${COLORS.primaryTheme};
+    transform: scale(1.2);
+  }
+`;
 export default SettingsModal;
