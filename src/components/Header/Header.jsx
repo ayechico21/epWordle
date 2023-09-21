@@ -7,6 +7,7 @@ import Modal from "../Modal";
 import { useToggle } from "../../hooks";
 import SettingsModal from "../Modals/SettingsModal";
 import InfoModal from "../Modals/InfoModal";
+import ToastShelf from "../Toaster/ToastShelf";
 
 function Header() {
   const [isInfo, toggleInfo] = useToggle(false);

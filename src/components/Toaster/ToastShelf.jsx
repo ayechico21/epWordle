@@ -20,7 +20,7 @@ function ToastShelf() {
 const Wrapper = styled.ol`
   position: absolute;
   right: 0;
-  top: 0;
+  top: 50px;
   display: flex;
   flex-direction: column;
   gap: 16px;

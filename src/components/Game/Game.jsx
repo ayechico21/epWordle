@@ -21,11 +21,9 @@ function Game() {
   );
 }
 const Wrapper = styled.article`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  border: 2px dotted red;
 `;
 export default Game;
