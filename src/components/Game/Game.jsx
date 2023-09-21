@@ -3,6 +3,7 @@ import GuessInput from "../GuessInput";
 import Guesses from "../Guesses";
 import styled from "styled-components";
 import GameProvider from "../Providers/GameProvider";
+import Toast from "../Toaster/Toast";
 
 function Game() {
   return (
@@ -10,6 +11,7 @@ function Game() {
       <GameProvider>
         <Guesses />
         <GuessInput />
+        <Toast />
       </GameProvider>
     </Wrapper>
   );
