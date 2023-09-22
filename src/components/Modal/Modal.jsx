@@ -9,25 +9,25 @@ function Modal({ handleDismiss, children }) {
 
   /**Enable animation when component unmounts */
   const animationDuration = 700;
-  const smoothlyDismiss = () => {
+
+  const smoothlyDismiss = React.useCallback(() => {
     setIsShowing(false);
     setTimeout(() => {
       setIsShowing(true); /**default state */
       handleDismiss();
     }, animationDuration);
-  };
-
+  }, [handleDismiss]);
   React.useEffect(() => {
     const handleKeydown = (event) => {
       if (event.key === "Escape") {
-        handleDismiss();
+        smoothlyDismiss();
       }
     };
     window.addEventListener("keydown", handleKeydown);
 
     /**CleanUp Function */
     return () => window.removeEventListener("keydown", handleKeydown);
-  }, [handleDismiss]);
+  }, [smoothlyDismiss]);
   return (
     <Wrapper
       $isShowing={isShowing}
