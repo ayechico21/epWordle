@@ -5,7 +5,7 @@ export const AppContext = React.createContext();
 function AppProvider({ children }) {
   const [wordLength, setWordLength] = React.useState(5);
   const [numOfChances, setNumofChances] = React.useState(5);
-  const [answer, setAnswer] = React.useState();
+  const [answer, setAnswer] = React.useState("");
 
   React.useEffect(() => {
     const wordle = words[wordLength];
