@@ -56,8 +56,7 @@ function GameProvider({ children }) {
   const handleGuessInput = (event) => {
     setGuess(event.target.value.toUpperCase());
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     if (guess.length < wordLength) {
       addToast("Check guess length", "warning");
       return; /**Word limit not yet met */

@@ -43,7 +43,9 @@ const Wrapper = styled.div`
   color: var(--color);
 `;
 const Message = styled.p`
+  text-align: center;
   flex: 1;
+  color: black;
 `;
 const CloseButton = styled.button`
   border: none;

@@ -8,6 +8,7 @@ function Keyboard() {
   const { keyboardStatus, handleSubmit, setGuess } =
     React.useContext(GameContext);
   const { wordLength } = React.useContext(AppContext);
+
   const handleKeyPress = React.useCallback(
     (e) => {
       if (e.keyCode >= 65 && e.keyCode <= 90) {
@@ -18,7 +19,7 @@ function Keyboard() {
         });
       }
       if (e.key === "Enter") {
-        handleSubmit(e);
+        handleSubmit();
       }
       if (e.key === "Backspace") {
         setGuess((cur) => {
@@ -29,6 +30,14 @@ function Keyboard() {
     },
     [handleSubmit, setGuess, wordLength]
   );
+
+  const handleBackspace = () => {
+    setGuess((cur) => {
+      const nextGuess = cur.slice(0, -1);
+      return nextGuess;
+    });
+  };
+
   React.useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
 
@@ -39,7 +48,14 @@ function Keyboard() {
     <Wrapper>
       {keys.map((row, rowIndex) => (
         <KeyRow key={rowIndex}>
-          {rowIndex === 2 && <XLButton>Enter</XLButton>}
+          {rowIndex === 2 && (
+            <XLButton
+              style={{ "--color": COLORS.primaryTheme }}
+              onClick={handleSubmit}
+            >
+              Enter
+            </XLButton>
+          )}
           {row.map((key) => {
             const bgColor = keyboardStatus[key]
               ? COLORS[keyboardStatus[key]]
@@ -50,7 +66,14 @@ function Keyboard() {
               </Button>
             );
           })}
-          {rowIndex === 2 && <XLButton>❌</XLButton>}
+          {rowIndex === 2 && (
+            <XLButton
+              style={{ "--color": COLORS.primaryTheme }}
+              onClick={handleBackspace}
+            >
+              X
+            </XLButton>
+          )}
         </KeyRow>
       ))}
     </Wrapper>
@@ -73,7 +96,12 @@ const Button = styled.button`
     transform: scale(1.1);
   }
 `;
-const XLButton = styled(Button)``;
+const XLButton = styled(Button)`
+  flex-grow: 1;
+  color: var(--color);
+  border: 3px solid var(--color);
+  font-weight: 600;
+`;
 
 const keys = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],

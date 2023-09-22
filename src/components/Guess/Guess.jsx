@@ -33,6 +33,7 @@ const Wrapper = styled.div`
 `;
 const Cell = styled.span`
   --cell-size: 3rem;
+  --font-color: hsl(0, 0%, 100%);
   --border-color: ${COLORS.secondaryTheme}; /**default border color */
   display: inline-flex;
   height: var(--cell-size);
@@ -41,6 +42,8 @@ const Cell = styled.span`
   justify-content: center;
   align-items: center;
   background-color: var(--cell-color);
+  color: var(--font-color);
+  font-size: 1.5rem;
   font-weight: 600;
 `;
 

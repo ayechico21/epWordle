@@ -1,10 +1,11 @@
 import React from "react";
 import { ToastContext } from "../Providers/ToastProvider";
-import styled from "styled-components";
+import { styled, keyframes } from "styled-components";
 import Toast from "./Toast";
 
 function ToastShelf() {
   const { toasts } = React.useContext(ToastContext);
+
   return (
     <Wrapper>
       {toasts.map(({ id, message, variant }) => {
@@ -27,13 +28,17 @@ const Wrapper = styled.ol`
   padding: 16px;
   list-style-type: none;
 `;
-const ToastWrapper = styled.li`
-  @keyframes slideIn {
-    from {
+
+const slideIn = keyframes`
+from {
       transform: translateX(calc(100% + 64px));
-    }
-  }
-  animation: slideIn 800ms cubic-bezier(0, 0.46, 0, 1.04) both;
+    }`;
+const slideOut = keyframes`from {
+  transform: translateX(-(calc(100% + 64px)));
+}`;
+
+const ToastWrapper = styled.li`
+  animation: ${slideIn} 1s cubic-bezier(0, 0.46, 0, 1.04) both;
   will-change: transform;
 `;
 export default ToastShelf;
