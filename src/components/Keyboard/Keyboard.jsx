@@ -1,24 +1,35 @@
 import React from "react";
 import styled from "styled-components";
+import { GameContext } from "../Providers/GameProvider";
+import { COLORS } from "../../constants";
 
 function Keyboard() {
-  React.useEffect(() => {
+  const { keyboardStatus } = React.useContext(GameContext);
+
+  /* React.useEffect(() => {
     const handleKeyPress = (e) => {
       console.log(e.key);
     };
     window.addEventListener("keydown", handleKeyPress);
 
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, []);
+  }, []); */
 
   return (
     <Wrapper>
       {keys.map((row, rowIndex) => (
         <KeyRow key={rowIndex}>
           {rowIndex === 2 && <XLButton>Enter</XLButton>}
-          {row.map((key) => (
-            <Button key={key}>{key}</Button>
-          ))}
+          {row.map((key) => {
+            const bgColor = keyboardStatus[key]
+              ? COLORS[keyboardStatus[key]]
+              : "";
+            return (
+              <Button key={key} style={{ "--color-bg": bgColor }}>
+                {key}
+              </Button>
+            );
+          })}
           {rowIndex === 2 && <XLButton>❌</XLButton>}
         </KeyRow>
       ))}
@@ -34,7 +45,9 @@ const KeyRow = styled.div`
   margin: 8px;
 `;
 const Button = styled.button`
-  padding: 5px 10px;
+  padding: 6px 12px;
+  font-weight: 500;
+  background-color: var(--color-bg);
 `;
 const XLButton = styled(Button)``;
 

@@ -6,6 +6,7 @@ import GameProvider from "../Providers/GameProvider";
 
 import ToastProvider from "../Providers/ToastProvider";
 import ToastShelf from "../Toaster/ToastShelf";
+import Keyboard from "../Keyboard";
 
 function Game() {
   return (
@@ -14,6 +15,7 @@ function Game() {
         <GameProvider>
           <Guesses />
           <GuessInput />
+          <Keyboard />
         </GameProvider>
         <ToastShelf />
       </ToastProvider>

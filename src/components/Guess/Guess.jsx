@@ -3,9 +3,9 @@ import { styled } from "styled-components";
 import { checkGuess, range } from "../../utils";
 import { COLORS } from "../../constants";
 import { AppContext } from "../Providers/AppProvider";
+
 function Guess({ guess }) {
   const { answer, wordLength } = React.useContext(AppContext);
-
   const characters = checkGuess(guess, answer);
 
   return (
@@ -41,6 +41,7 @@ const Cell = styled.span`
   justify-content: center;
   align-items: center;
   background-color: var(--cell-color);
+  font-weight: 600;
 `;
 
 export default Guess;
