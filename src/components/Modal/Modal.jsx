@@ -1,10 +1,22 @@
 import React from "react";
 import { X as Close } from "react-feather";
 
-import { styled } from "styled-components";
+import { styled, keyframes } from "styled-components";
 import { COLORS } from "../../constants";
 
 function Modal({ handleDismiss, children }) {
+  const [isShowing, setIsShowing] = React.useState(true);
+
+  /**Enable animation when component unmounts */
+  const animationDuration = 700;
+  const smoothlyDismiss = () => {
+    setIsShowing(false);
+    setTimeout(() => {
+      setIsShowing(true); /**default state */
+      handleDismiss();
+    }, animationDuration);
+  };
+
   React.useEffect(() => {
     const handleKeydown = (event) => {
       if (event.key === "Escape") {
@@ -17,10 +29,14 @@ function Modal({ handleDismiss, children }) {
     return () => window.removeEventListener("keydown", handleKeydown);
   }, [handleDismiss]);
   return (
-    <Wrapper>
-      <BackDrop onClick={handleDismiss} />
+    <Wrapper
+      $isShowing={isShowing}
+      style={{ "--animation-duration": `${animationDuration / 1000}s` }}
+    >
+      {/**Transcient prop $, not passed onto  DOM */}
+      <BackDrop onClick={smoothlyDismiss} />
       <Dialog>
-        <Button onClick={handleDismiss}>
+        <Button onClick={smoothlyDismiss}>
           <Close />
         </Button>
         {children}
@@ -28,6 +44,16 @@ function Modal({ handleDismiss, children }) {
     </Wrapper>
   );
 }
+
+const enter = keyframes`
+  from {opacity: 0;}
+  to {opacity: 1;}
+`;
+
+const exit = keyframes`
+  from {opacity: 1;}
+  to {opacity: 0;}
+`;
 
 const Wrapper = styled.div`
   position: fixed;
@@ -37,6 +63,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  animation: ${(props) => (props.$isShowing ? enter : exit)}
+    var(--animation-duration) linear forwards;
 `;
 const BackDrop = styled.div`
   position: absolute;
