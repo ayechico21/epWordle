@@ -9,7 +9,6 @@ function Modal({ handleDismiss, children }) {
 
   /**Enable animation when component unmounts */
   const animationDuration = 700;
-
   const smoothlyDismiss = React.useCallback(() => {
     setIsShowing(false);
     setTimeout(() => {

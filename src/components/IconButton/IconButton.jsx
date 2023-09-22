@@ -17,7 +17,7 @@ const Icon = styled.button`
   transform: rotate(45deg);
   transition: All 0.2s;
   &:hover {
-    transform: scale(1.1) rotate(45deg);
+    transform: scale(1.2) rotate(45deg);
   }
 `;
 

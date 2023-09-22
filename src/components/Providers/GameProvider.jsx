@@ -95,6 +95,7 @@ function GameProvider({ children }) {
       value={{
         guessList,
         guess,
+        setGuess,
         handleGuessInput,
         handleSubmit,
         keyboardStatus,
