@@ -1,12 +1,12 @@
 import React from "react";
 import { AppContext } from "./AppProvider";
-import { validGuess } from "../../utils";
+import { getGameStatus, validGuess } from "../../utils";
 import { ToastContext } from "./ToastProvider";
 
 export const GameContext = React.createContext();
 
 function GameProvider({ children }) {
-  const { wordLength } = React.useContext(AppContext);
+  const { wordLength, answer, numOfChances } = React.useContext(AppContext);
   const [guessList, setGuessList] = React.useState([]);
   const [guess, setGuess] = React.useState("");
   const { addToast } = React.useContext(ToastContext);
@@ -14,6 +14,12 @@ function GameProvider({ children }) {
   const addGuess = (guess) => {
     const nextGuessList = [...guessList, guess];
     setGuessList(nextGuessList);
+    const gameStatus = getGameStatus(guess, answer);
+    if (gameStatus) {
+      addToast("Game won", "success");
+    } else if (nextGuessList.length >= numOfChances) {
+      addToast("Game lost", "error");
+    }
   };
 
   const handleGuessInput = (event) => {
@@ -27,7 +33,7 @@ function GameProvider({ children }) {
       return; /**Word limit not yet met */
     }
     if (!validGuess(guess)) {
-      addToast("Word not found", "error");
+      addToast("Word not found", "notice");
       setGuess("");
       return;
     }

@@ -7,7 +7,7 @@ function Guess({ guess }) {
   const { answer, wordLength } = React.useContext(AppContext);
 
   const characters = checkGuess(guess, answer);
-  if (characters) console.log(characters);
+
   return (
     <Wrapper>
       {guess &&

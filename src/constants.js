@@ -5,6 +5,13 @@ export const COLORS = {
   correct: "hsl(140 52% 55%)",
   misplaced: "hsl(38 100% 55%)",
   incorrect: "hsl(210 3% 52%)",
+  notice: { primary: "hsl(235 100% 50%)", secondary: "hsl(235 0% 100%)" },
+  warning: {
+    primary: "hsl(35 100% 46%)",
+    secondary: "hsl(40 100% 94%)",
+  },
+  success: { primary: "hsl(120 80% 35%)", secondary: "hsl(120 90% 96%)" },
+  error: { primary: " hsl(345 100% 50%)", secondary: "hsl(350 90% 96%)" },
 };
 
 export const words = {
@@ -2598,7 +2605,7 @@ export const words = {
     "DANGER",
     "DEEPER",
     "DEFEAT",
-    "DEGREE",
+    "REE",
     "DESERT",
     "DESIGN",
     "DINNER",

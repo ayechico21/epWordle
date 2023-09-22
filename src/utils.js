@@ -42,3 +42,7 @@ export function validGuess(guess) {
   const wordLength = guess.length;
   return words[wordLength].includes(guess);
 }
+
+export function getGameStatus(guess, answer) {
+  return guess === answer;
+}
