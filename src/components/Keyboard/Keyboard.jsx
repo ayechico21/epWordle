@@ -30,7 +30,12 @@ function Keyboard() {
     },
     [handleSubmit, setGuess, wordLength]
   );
-
+  const handleOnClick = (key) => {
+    setGuess((cur) => {
+      if (cur && cur.length === wordLength) return cur;
+      return cur + key;
+    });
+  };
   const handleBackspace = () => {
     setGuess((cur) => {
       const nextGuess = cur.slice(0, -1);
@@ -65,7 +70,13 @@ function Keyboard() {
               ? COLORS[keyboardStatus[key]]
               : "";
             return (
-              <Button key={key} style={{ "--color-bg": bgColor }}>
+              <Button
+                key={key}
+                style={{ "--color-bg": bgColor }}
+                onClick={() => {
+                  handleOnClick(key);
+                }}
+              >
                 {key}
               </Button>
             );
@@ -84,27 +95,36 @@ function Keyboard() {
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 100%; /**take as much screen space as possible */
+  max-width: 550px; /**clamp maximum width of keyboard*/
+`;
 const KeyRow = styled.div`
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin: 8px;
+  gap: 4px;
+  margin: 8px 0;
 `;
 const Button = styled.button`
-  padding: 6px 12px;
+  --size: 48px;
+  height: var(--size);
+  width: var(--size);
   font-weight: 500;
   background-color: var(--color-bg);
   transition: All 0.2s;
+  overflow: hidden; /**avoid overflow to show on smaller screens */
   &:hover {
     transform: scale(1.1);
+  }
+  @media (max-width: 450px) {
+    --size: 34px;
   }
 `;
 const XLButton = styled(Button)`
   flex-grow: 1;
   color: var(--color);
   border: 3px solid var(--color);
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const keys = [

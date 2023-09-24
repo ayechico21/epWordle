@@ -17,5 +17,6 @@ function App() {
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  padding: 8px;
 `;
 export default App;

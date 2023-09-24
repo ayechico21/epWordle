@@ -18,6 +18,7 @@ function GuessInput() {
         onKeyDown={(event) =>
           event.preventDefault()
         } /**avoid keydown event causing guess updated twice */
+        autoFocus={true}
       />
     </Wrapper>
   );
