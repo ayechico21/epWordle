@@ -4,16 +4,21 @@ import { AppContext } from "../Providers/AppProvider";
 import { COLORS } from "../../constants";
 
 function SettingsModal({ handleDismiss }) {
-  const { wordLength, setWordLength, numOfChances, setNumofChances } =
-    React.useContext(AppContext);
+  const {
+    wordLength,
+    setWordLength,
+    numOfChances,
+    setNumofChances,
+    setIsGameOn,
+  } = React.useContext(AppContext);
   const [userWordLength, setUserWordLength] = React.useState(wordLength);
   const [userNumOfChances, setUserNumOfChances] = React.useState(numOfChances);
   const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(userWordLength, userNumOfChances);
-    setWordLength(userWordLength);
-    setNumofChances(userNumOfChances);
-    handleDismiss();
+    event.preventDefault(); /**avoid page from reloading */
+    setWordLength(userWordLength); /**update character limit of word */
+    setNumofChances(userNumOfChances); /**update num of chances */
+    setIsGameOn(false); /**current play ended */
+    handleDismiss(); /**close modal */
   };
 
   return (

@@ -7,17 +7,19 @@ import Modal from "../Modal";
 import { useToggle } from "../../hooks";
 import SettingsModal from "../Modals/SettingsModal";
 import InfoModal from "../Modals/InfoModal";
+import { AppContext } from "../Providers/AppProvider";
 
 function Header() {
+  const { setIsGameOn } = React.useContext(AppContext);
   const [isInfo, toggleInfo] = useToggle(false);
   const [isSettings, toggleSettings] = useToggle(false);
-  const [isRefresh, toggleRefresh] = useToggle(false);
+
   return (
     <Wrapper>
       <IconButton icon={<Info />} onClick={toggleInfo} />
       <Heading>Wordle</Heading>
       <IconButton icon={<Settings />} onClick={toggleSettings} />
-      {/* <IconButton icon={<RefreshCw />} onClick={toggleRefresh} /> */}
+      <IconButton icon={<RefreshCw />} onClick={() => setIsGameOn(false)} />
 
       {isInfo && (
         <Modal handleDismiss={toggleInfo}>
@@ -29,13 +31,6 @@ function Header() {
           <SettingsModal handleDismiss={toggleSettings} />
         </Modal>
       )}
-      {isRefresh && (
-        <Modal handleDismiss={toggleRefresh}>
-          <p>You sure you want to reload???</p>
-          <button>Reload</button>
-          <button onClick={toggleRefresh}>Cancel</button>
-        </Modal>
-      )}
     </Wrapper>
   );
 }
@@ -45,6 +40,10 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 20px;
   border-bottom: 2px solid ${COLORS.primaryTheme};
+
+  @media (max-width: 450px) {
+    gap: 10px;
+  }
 `;
 const Heading = styled.h1`
   margin: 0 auto;

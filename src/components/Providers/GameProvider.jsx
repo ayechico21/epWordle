@@ -35,7 +35,7 @@ const INITIAL_KEYBOARD_STATE = {
 };
 
 function GameProvider({ children }) {
-  const { wordLength, answer, numOfChances, setIsGameOn } =
+  const { wordLength, answer, numOfChances, isGameOn } =
     React.useContext(AppContext);
   const { addToast } = React.useContext(ToastContext);
   const [guessList, setGuessList] = React.useState([]);
@@ -44,17 +44,23 @@ function GameProvider({ children }) {
     INITIAL_KEYBOARD_STATE
   );
 
+  React.useEffect(() => {
+    if (!isGameOn) {
+      setGuessList([]); /**initial guessList state => empty */
+      setGuess(""); /**initial guessstate => empty */
+      setKeyboardStatus(INITIAL_KEYBOARD_STATE);
+    }
+  }, [isGameOn]);
+
   /**add new guess to guess list */
   const addGuess = (guess) => {
     const nextGuessList = [...guessList, guess];
     setGuessList(nextGuessList);
     const gameStatus = getGameStatus(guess, answer);
     if (gameStatus) {
-      addToast("Game won", "success", true);
-      setIsGameOn(false); /**game ended */
+      addToast(`Game won in ${guessList.length + 1} tries`, "success", true);
     } else if (nextGuessList.length >= numOfChances) {
-      addToast("Game lost", "error", true);
-      setIsGameOn(false); /**game ended */
+      addToast(`Correct word is "${answer}"`, "error", true);
     }
   };
   const handleGuessInput = (event) => {
@@ -62,7 +68,7 @@ function GameProvider({ children }) {
   };
   const handleSubmit = () => {
     if (guess.length < wordLength) {
-      addToast("Check guess length", "warning");
+      addToast("Check word length", "warning");
       return; /**Word limit not yet met */
     }
     if (!validGuess(guess)) {

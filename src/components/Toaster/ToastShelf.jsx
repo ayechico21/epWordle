@@ -2,23 +2,23 @@ import React from "react";
 import { ToastContext } from "../Providers/ToastProvider";
 import { styled, keyframes } from "styled-components";
 import Toast from "./Toast";
+import { AppContext } from "../Providers/AppProvider";
 
 function ToastShelf() {
   const { toasts } = React.useContext(ToastContext);
-  const id = React.useId();
-  let handleActionButtonClick = null;
-  const doAction = () => console.log("Action to be done here");
+  const { setIsGameOn } = React.useContext(AppContext);
+  const handleActionButtonClick = () => setIsGameOn(false); /**action function*/
+
   return (
-    <Wrapper key={id}>
+    <Wrapper>
       {toasts.map(({ id, message, variant, action }) => {
-        if (action) handleActionButtonClick = doAction;
         return (
           <ToastWrapper key={id}>
             <Toast
               message={message}
               variant={variant}
               id={id}
-              handleActionButtonClick={handleActionButtonClick}
+              handleActionButtonClick={action ? handleActionButtonClick : null}
             />
           </ToastWrapper>
         );
