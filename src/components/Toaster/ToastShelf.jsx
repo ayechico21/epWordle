@@ -5,10 +5,11 @@ import Toast from "./Toast";
 
 function ToastShelf() {
   const { toasts } = React.useContext(ToastContext);
+  const id = React.useId();
   let handleActionButtonClick = null;
   const doAction = () => console.log("Action to be done here");
   return (
-    <Wrapper>
+    <Wrapper key={id}>
       {toasts.map(({ id, message, variant, action }) => {
         if (action) handleActionButtonClick = doAction;
         return (
@@ -28,7 +29,7 @@ function ToastShelf() {
 const Wrapper = styled.ol`
   position: absolute;
   right: 0;
-  top: 50px;
+  bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -45,7 +46,7 @@ const slideOut = keyframes`from {
 }`;
 
 const ToastWrapper = styled.li`
-  animation: ${slideIn} 1s cubic-bezier(0, 0.46, 0, 1.04) both;
-  will-change: transform;
+  /* animation: ${slideIn} 1s cubic-bezier(0, 0.46, 0, 1.04) both;
+  will-change: transform; */
 `;
 export default ToastShelf;

@@ -23,13 +23,14 @@ function Toast({ message, variant, id, handleActionButtonClick }) {
   const color = COLORS[variant].primary;
   const bgColor = COLORS[variant].secondary;
 
-  /**If game not over, remove toast after some time */
+  /* handle  auto dismiss later*/
+  /**If game not over, remove toast after some time 
   if (!handleActionButtonClick) {
-    const delay = 3000; /**toast display time => 3s  */
+    const delay = 3000; /**toast display time => 3s  
     setTimeout(() => {
       removeToast(id);
     }, delay);
-  }
+  } */
   return (
     <Wrapper style={{ "--color": color, "--color-bg": bgColor }}>
       <Icon />
@@ -52,9 +53,10 @@ function Toast({ message, variant, id, handleActionButtonClick }) {
 }
 
 const Wrapper = styled.div`
+  width: 300px;
   display: flex;
   align-items: start;
-  gap: 16px;
+  justify-content: space-between;
   padding: 8px 16px;
   background-color: var(--color-bg);
   border-radius: 8px;
