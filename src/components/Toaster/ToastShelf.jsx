@@ -5,13 +5,20 @@ import Toast from "./Toast";
 
 function ToastShelf() {
   const { toasts } = React.useContext(ToastContext);
-
+  let handleActionButtonClick = null;
+  const doAction = () => console.log("Action to be done here");
   return (
     <Wrapper>
-      {toasts.map(({ id, message, variant }) => {
+      {toasts.map(({ id, message, variant, action }) => {
+        if (action) handleActionButtonClick = doAction;
         return (
           <ToastWrapper key={id}>
-            <Toast message={message} variant={variant} id={id} />
+            <Toast
+              message={message}
+              variant={variant}
+              id={id}
+              handleActionButtonClick={handleActionButtonClick}
+            />
           </ToastWrapper>
         );
       })}

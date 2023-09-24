@@ -7,7 +7,7 @@ import { AppContext } from "../Providers/AppProvider";
 function Keyboard() {
   const { keyboardStatus, handleSubmit, setGuess } =
     React.useContext(GameContext);
-  const { wordLength } = React.useContext(AppContext);
+  const { wordLength, isGameOn } = React.useContext(AppContext);
 
   const handleKeyPress = React.useCallback(
     (e) => {
@@ -39,10 +39,14 @@ function Keyboard() {
   };
 
   React.useEffect(() => {
+    if (!isGameOn) {
+      window.removeEventListener("keydown", handleKeyPress);
+      return;
+    }
     window.addEventListener("keydown", handleKeyPress);
 
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [handleKeyPress]);
+  }, [handleKeyPress, isGameOn]);
 
   return (
     <Wrapper>

@@ -6,6 +6,7 @@ function AppProvider({ children }) {
   const [wordLength, setWordLength] = React.useState(5);
   const [numOfChances, setNumofChances] = React.useState(5);
   const [answer, setAnswer] = React.useState("");
+  const [isGameOn, setIsGameOn] = React.useState(true);
 
   React.useEffect(() => {
     const wordle = words[wordLength];
@@ -21,8 +22,10 @@ function AppProvider({ children }) {
         wordLength,
         numOfChances,
         answer,
+        isGameOn,
         setWordLength,
         setNumofChances,
+        setIsGameOn,
       }}
     >
       {children}

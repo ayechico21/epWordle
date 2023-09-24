@@ -12,7 +12,7 @@ export const range = (start, end, step = 1) => {
   return output;
 };
 
-export function checkGuess(guess, answer) {
+export function getGuessStatus(guess, answer) {
   if (!guess || !answer) return null;
 
   const guessChars = guess.toUpperCase().split("");

@@ -9,7 +9,7 @@ function GuessInput() {
   return (
     <Wrapper>
       <p>Your Guess: </p>
-      <Input>{guess}</Input>
+      <Input type="text" value={guess} readOnly={true} />
     </Wrapper>
   );
 }
@@ -19,7 +19,7 @@ const Wrapper = styled.article`
   align-items: center;
 `;
 
-const Input = styled.p`
+const Input = styled.input`
   width: 300px;
   height: 3.5rem;
   text-align: center;

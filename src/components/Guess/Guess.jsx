@@ -1,12 +1,12 @@
 import React from "react";
 import { styled } from "styled-components";
-import { checkGuess, range } from "../../utils";
+import { getGuessStatus, range } from "../../utils";
 import { COLORS } from "../../constants";
 import { AppContext } from "../Providers/AppProvider";
 
 function Guess({ guess }) {
   const { answer, wordLength } = React.useContext(AppContext);
-  const characters = checkGuess(guess, answer);
+  const characters = getGuessStatus(guess, answer);
 
   return (
     <Wrapper>

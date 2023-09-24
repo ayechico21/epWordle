@@ -17,15 +17,33 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ message, variant, id }) {
+function Toast({ message, variant, id, handleActionButtonClick }) {
   const { removeToast } = React.useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
   const color = COLORS[variant].primary;
   const bgColor = COLORS[variant].secondary;
+
+  /**If game not over, remove toast after some time */
+  if (!handleActionButtonClick) {
+    const delay = 3000; /**toast display time => 3s  */
+    setTimeout(() => {
+      removeToast(id);
+    }, delay);
+  }
   return (
     <Wrapper style={{ "--color": color, "--color-bg": bgColor }}>
       <Icon />
-      <Message>{message}</Message>
+      <Content>
+        <Message>{message}</Message>
+        {handleActionButtonClick && (
+          <ActionButton
+            style={{ "--color": color, "--color-bg": bgColor }}
+            onClick={handleActionButtonClick}
+          >
+            Reset
+          </ActionButton>
+        )}
+      </Content>
       <CloseButton onClick={() => removeToast(id)}>
         <X />
       </CloseButton>
@@ -35,17 +53,25 @@ function Toast({ message, variant, id }) {
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 16px;
   padding: 8px 16px;
   background-color: var(--color-bg);
   border-radius: 8px;
   color: var(--color);
 `;
+const Content = styled.div`
+  padding: 0 5px;
+`;
 const Message = styled.p`
   text-align: center;
   flex: 1;
   color: black;
+`;
+const ActionButton = styled.button`
+  width: 100%;
+  background-color: var(--color-bg);
+  border-color: var(--color);
 `;
 const CloseButton = styled.button`
   border: none;
