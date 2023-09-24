@@ -6,29 +6,32 @@ function AppProvider({ children }) {
   const [wordLength, setWordLength] = React.useState(5);
   const [numOfChances, setNumofChances] = React.useState(5);
   const [answer, setAnswer] = React.useState("");
-  const [isGameOn, setIsGameOn] = React.useState(true);
+
+  /** || running || won || lost || end || */
+  const [gameStatus, setGameStatus] = React.useState("running");
 
   React.useEffect(() => {
+    if (gameStatus === "won" || gameStatus === "lost") return;
     const wordle = words[wordLength];
     /**Random answer */
     const nextAnswer = wordle[Math.floor(Math.random() * wordle.length)];
     setAnswer(nextAnswer);
     console.log(nextAnswer);
 
-    if (isGameOn) return /**avoid infinite re-renders */;
-    else setIsGameOn(true); /**let the game begin!!! */
-  }, [wordLength, isGameOn]);
+    if (gameStatus !== "end") return; /**avoid infinite re-renders */
+    setGameStatus("running"); /**let the game begin!!! */
+  }, [wordLength, gameStatus]);
 
   return (
     <AppContext.Provider
       value={{
         wordLength,
-        numOfChances,
-        answer,
-        isGameOn,
         setWordLength,
+        numOfChances,
         setNumofChances,
-        setIsGameOn,
+        gameStatus,
+        setGameStatus,
+        answer,
       }}
     >
       {children}

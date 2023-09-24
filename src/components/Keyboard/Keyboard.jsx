@@ -7,7 +7,7 @@ import { AppContext } from "../Providers/AppProvider";
 function Keyboard() {
   const { keyboardStatus, handleSubmit, setGuess } =
     React.useContext(GameContext);
-  const { wordLength, isGameOn } = React.useContext(AppContext);
+  const { wordLength, gameStatus } = React.useContext(AppContext);
 
   const handleKeyPress = React.useCallback(
     (e) => {
@@ -44,14 +44,14 @@ function Keyboard() {
   };
 
   React.useEffect(() => {
-    if (!isGameOn) {
+    if (gameStatus !== "running") {
       window.removeEventListener("keydown", handleKeyPress);
       return;
     }
     window.addEventListener("keydown", handleKeyPress);
 
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [handleKeyPress, isGameOn]);
+  }, [handleKeyPress, gameStatus]);
 
   return (
     <Wrapper>
@@ -61,6 +61,7 @@ function Keyboard() {
             <XLButton
               style={{ "--color": COLORS.primaryTheme }}
               onClick={handleSubmit}
+              disabled={gameStatus !== "running"}
             >
               Enter
             </XLButton>
@@ -76,6 +77,7 @@ function Keyboard() {
                 onClick={() => {
                   handleOnClick(key);
                 }}
+                disabled={gameStatus !== "running"}
               >
                 {key}
               </Button>
@@ -85,6 +87,7 @@ function Keyboard() {
             <XLButton
               style={{ "--color": COLORS.primaryTheme }}
               onClick={handleBackspace}
+              disabled={gameStatus !== "running"}
             >
               X
             </XLButton>
@@ -113,7 +116,7 @@ const Button = styled.button`
   background-color: var(--color-bg);
   transition: All 0.2s;
   overflow: hidden; /**avoid overflow to show on smaller screens */
-  &:hover {
+  &:hover:not[disabled] {
     transform: scale(1.1);
   }
   @media (max-width: 450px) {

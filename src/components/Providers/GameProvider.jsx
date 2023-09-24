@@ -1,6 +1,6 @@
 import React from "react";
 import { AppContext } from "./AppProvider";
-import { getGameStatus, getGuessStatus, validGuess } from "../../utils";
+import { checkGuess, getGuessStatus, validGuess } from "../../utils";
 import { ToastContext } from "./ToastProvider";
 
 export const GameContext = React.createContext();
@@ -35,7 +35,7 @@ const INITIAL_KEYBOARD_STATE = {
 };
 
 function GameProvider({ children }) {
-  const { wordLength, answer, numOfChances, isGameOn } =
+  const { wordLength, answer, numOfChances, gameStatus, setGameStatus } =
     React.useContext(AppContext);
   const { addToast } = React.useContext(ToastContext);
   const [guessList, setGuessList] = React.useState([]);
@@ -44,23 +44,26 @@ function GameProvider({ children }) {
     INITIAL_KEYBOARD_STATE
   );
 
+  /**Reset Game State */
   React.useEffect(() => {
-    if (!isGameOn) {
+    if (gameStatus === "end") {
       setGuessList([]); /**initial guessList state => empty */
       setGuess(""); /**initial guessstate => empty */
       setKeyboardStatus(INITIAL_KEYBOARD_STATE);
     }
-  }, [isGameOn]);
+  }, [gameStatus]);
 
   /**add new guess to guess list */
   const addGuess = (guess) => {
     const nextGuessList = [...guessList, guess];
     setGuessList(nextGuessList);
-    const gameStatus = getGameStatus(guess, answer);
-    if (gameStatus) {
+    const isGameWon = checkGuess(guess, answer);
+    if (isGameWon) {
       addToast(`Game won in ${guessList.length + 1} tries`, "success", true);
+      setGameStatus("won");
     } else if (nextGuessList.length >= numOfChances) {
       addToast(`Correct word is "${answer}"`, "error", true);
+      setGameStatus("lost");
     }
   };
   const handleGuessInput = (event) => {

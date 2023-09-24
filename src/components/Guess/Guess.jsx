@@ -5,12 +5,13 @@ import { COLORS } from "../../constants";
 import { AppContext } from "../Providers/AppProvider";
 
 function Guess({ guess }) {
-  const { answer, wordLength } = React.useContext(AppContext);
+  const { answer, wordLength, gameStatus } = React.useContext(AppContext);
   const characters = getGuessStatus(guess, answer);
 
   return (
     <Wrapper>
       {guess &&
+        gameStatus !== "end" &&
         range(wordLength).map((_, index) => {
           const color = COLORS[`${characters[index].status}`];
           return (

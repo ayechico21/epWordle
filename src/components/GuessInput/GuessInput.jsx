@@ -2,8 +2,10 @@ import React from "react";
 import { styled } from "styled-components";
 import { COLORS } from "../../constants";
 import { GameContext } from "../Providers/GameProvider";
+import { AppContext } from "../Providers/AppProvider";
 
 function GuessInput() {
+  const { gameStatus } = React.useContext(AppContext);
   const { guess, handleGuessInput } = React.useContext(GameContext);
 
   return (
@@ -19,6 +21,7 @@ function GuessInput() {
           event.preventDefault()
         } /**avoid keydown event causing guess updated twice */
         autoFocus={true}
+        disabled={gameStatus !== "running"}
       />
     </Wrapper>
   );

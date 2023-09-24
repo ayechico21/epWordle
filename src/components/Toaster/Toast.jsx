@@ -74,6 +74,11 @@ const ActionButton = styled.button`
   width: 100%;
   background-color: var(--color-bg);
   border-color: var(--color);
+  transition: All 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 const CloseButton = styled.button`
   border: none;

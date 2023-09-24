@@ -43,6 +43,6 @@ export function validGuess(guess) {
   return words[wordLength].includes(guess);
 }
 
-export function getGameStatus(guess, answer) {
+export function checkGuess(guess, answer) {
   return guess === answer;
 }

@@ -6,8 +6,9 @@ import { AppContext } from "../Providers/AppProvider";
 
 function ToastShelf() {
   const { toasts } = React.useContext(ToastContext);
-  const { setIsGameOn } = React.useContext(AppContext);
-  const handleActionButtonClick = () => setIsGameOn(false); /**action function*/
+  const { setGameStatus } = React.useContext(AppContext);
+  const handleActionButtonClick = () =>
+    setGameStatus("end"); /**action function*/
 
   return (
     <Wrapper>

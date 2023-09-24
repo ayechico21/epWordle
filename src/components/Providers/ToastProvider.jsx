@@ -4,12 +4,12 @@ import { AppContext } from "./AppProvider";
 export const ToastContext = React.createContext();
 
 function ToastProvider({ children }) {
-  const { isGameOn } = React.useContext(AppContext);
+  const { gameStatus } = React.useContext(AppContext);
   const [toasts, setToasts] = React.useState([]);
 
   React.useEffect(() => {
-    if (!isGameOn) setToasts([]);
-  }, [isGameOn]);
+    if (gameStatus === "end") setToasts([]);
+  }, [gameStatus]);
 
   const addToast = (message, variant, action) => {
     const newToast = {

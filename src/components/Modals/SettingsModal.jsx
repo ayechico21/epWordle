@@ -9,7 +9,7 @@ function SettingsModal({ handleDismiss }) {
     setWordLength,
     numOfChances,
     setNumofChances,
-    setIsGameOn,
+    setGameStatus,
   } = React.useContext(AppContext);
   const [userWordLength, setUserWordLength] = React.useState(wordLength);
   const [userNumOfChances, setUserNumOfChances] = React.useState(numOfChances);
@@ -17,7 +17,7 @@ function SettingsModal({ handleDismiss }) {
     event.preventDefault(); /**avoid page from reloading */
     setWordLength(userWordLength); /**update character limit of word */
     setNumofChances(userNumOfChances); /**update num of chances */
-    setIsGameOn(false); /**current play ended */
+    setGameStatus("end"); /**current play ended */
     handleDismiss(); /**close modal */
   };
 

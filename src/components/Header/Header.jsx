@@ -10,7 +10,7 @@ import InfoModal from "../Modals/InfoModal";
 import { AppContext } from "../Providers/AppProvider";
 
 function Header() {
-  const { setIsGameOn } = React.useContext(AppContext);
+  const { setGameStatus } = React.useContext(AppContext);
   const [isInfo, toggleInfo] = useToggle(false);
   const [isSettings, toggleSettings] = useToggle(false);
 
@@ -19,7 +19,7 @@ function Header() {
       <IconButton icon={<Info />} onClick={toggleInfo} />
       <Heading>Wordle</Heading>
       <IconButton icon={<Settings />} onClick={toggleSettings} />
-      <IconButton icon={<RefreshCw />} onClick={() => setIsGameOn(false)} />
+      <IconButton icon={<RefreshCw />} onClick={() => setGameStatus("end")} />
 
       {isInfo && (
         <Modal handleDismiss={toggleInfo}>
