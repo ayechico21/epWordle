@@ -19,7 +19,7 @@ const ICONS_BY_VARIANT = {
 
 function Toast({ message, variant, id, handleActionButtonClick }) {
   const { removeToast } = React.useContext(ToastContext);
-  const Icon = ICONS_BY_VARIANT[variant];
+  const Icon = ICONS_BY_VARIANT[variant]; /**get icon component  */
   const color = COLORS[variant].primary;
   const bgColor = COLORS[variant].secondary;
 
@@ -55,7 +55,7 @@ function Toast({ message, variant, id, handleActionButtonClick }) {
 const Wrapper = styled.div`
   width: 300px;
   display: flex;
-  align-items: start;
+  align-items: start; /**child items starts from top of container */
   justify-content: space-between;
   padding: 8px 16px;
   background-color: var(--color-bg);
@@ -67,7 +67,7 @@ const Content = styled.div`
 `;
 const Message = styled.p`
   text-align: center;
-  flex: 1;
+  flex: 1; /**use extra space */
   color: black;
 `;
 const ActionButton = styled.button`
@@ -87,5 +87,10 @@ const CloseButton = styled.button`
   padding: 0;
   cursor: pointer;
   color: inherit;
+
+  transition: All 0.2s;
+  &:hover {
+    transform: scale(1.5) rotate(90deg);
+  }
 `;
 export default Toast;

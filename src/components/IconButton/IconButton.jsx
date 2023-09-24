@@ -12,7 +12,7 @@ const Icon = styled.button`
   --size: 40px;
   height: var(--size);
   width: var(--size);
-  border-radius: 50%;
+  border-radius: 50%; /**round shape of button */
   cursor: pointer;
   transform: rotate(45deg);
   transition: All 0.2s;
@@ -22,7 +22,7 @@ const Icon = styled.button`
 `;
 
 const SpanIcon = styled.span`
-  /**keep position of icon same */
+  /**keep position of icon same after container is rotated */
   display: block;
   transform: rotate(-45deg);
 `;

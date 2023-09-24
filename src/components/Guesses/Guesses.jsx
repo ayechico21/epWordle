@@ -11,9 +11,11 @@ function Guesses() {
   const guessListLength = guessList.length;
   return (
     <Wrapper>
+      {/**layout of guess slot with guess characters */}
       {range(guessListLength).map((_, index) => (
         <Guess key={index} guess={guessList[index]} />
       ))}
+      {/**layout of guess slots without guess characters */}
       {range(guessListLength, numOfChances).map((_, index) => (
         <Guess key={index} guess="" />
       ))}

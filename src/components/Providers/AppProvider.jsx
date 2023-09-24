@@ -11,6 +11,7 @@ function AppProvider({ children }) {
   const [gameStatus, setGameStatus] = React.useState("running");
 
   React.useEffect(() => {
+    /**If game over but not yet ended, maintain game state  */
     if (gameStatus === "won" || gameStatus === "lost") return;
     const wordle = words[wordLength];
     /**Random answer */
@@ -19,7 +20,7 @@ function AppProvider({ children }) {
     console.log(nextAnswer);
 
     if (gameStatus !== "end") return; /**avoid infinite re-renders */
-    setGameStatus("running"); /**let the game begin!!! */
+    setGameStatus("running"); /**let the next game begin!!! */
   }, [wordLength, gameStatus]);
 
   return (

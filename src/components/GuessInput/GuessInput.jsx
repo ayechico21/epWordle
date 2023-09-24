@@ -20,8 +20,8 @@ function GuessInput() {
         onKeyDown={(event) =>
           event.preventDefault()
         } /**avoid keydown event causing guess updated twice */
-        autoFocus={true}
-        disabled={gameStatus !== "running"}
+        autoFocus={true} /**input is focused when component is rendered */
+        disabled={gameStatus !== "running"} /**disable input if game is over */
       />
     </Wrapper>
   );

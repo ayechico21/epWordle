@@ -6,10 +6,14 @@ import { AppContext } from "../Providers/AppProvider";
 
 function Guess({ guess }) {
   const { answer, wordLength, gameStatus } = React.useContext(AppContext);
-  const characters = getGuessStatus(guess, answer);
+  const characters = getGuessStatus(
+    guess,
+    answer
+  ); /**get status for each character of guess */
 
   return (
     <Wrapper>
+      {/**If guess is present && game is not over */}
       {guess &&
         gameStatus !== "end" &&
         range(wordLength).map((_, index) => {
@@ -23,6 +27,7 @@ function Guess({ guess }) {
             </Cell>
           );
         })}
+      {/**If not guess word */}
       {!guess && range(wordLength).map((_, index) => <Cell key={index} />)}
     </Wrapper>
   );

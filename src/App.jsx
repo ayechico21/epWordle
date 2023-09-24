@@ -15,8 +15,8 @@ function App() {
   );
 }
 const Wrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px; /**clamp width of container */
+  margin: 0 auto; /**center container */
   padding: 8px;
 `;
 export default App;

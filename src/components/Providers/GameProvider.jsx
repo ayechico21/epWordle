@@ -38,13 +38,15 @@ function GameProvider({ children }) {
   const { wordLength, answer, numOfChances, gameStatus, setGameStatus } =
     React.useContext(AppContext);
   const { addToast } = React.useContext(ToastContext);
-  const [guessList, setGuessList] = React.useState([]);
-  const [guess, setGuess] = React.useState("");
+  const [guessList, setGuessList] = React.useState(
+    []
+  ); /**store all the guesses */
+  const [guess, setGuess] = React.useState(""); /**current user guess */
   const [keyboardStatus, setKeyboardStatus] = React.useState(
     INITIAL_KEYBOARD_STATE
-  );
+  ); /**virtual keys status */
 
-  /**Reset Game State */
+  /**Reset Game State if new game ended and new game to be started*/
   React.useEffect(() => {
     if (gameStatus === "end") {
       setGuessList([]); /**initial guessList state => empty */
@@ -57,7 +59,7 @@ function GameProvider({ children }) {
   const addGuess = (guess) => {
     const nextGuessList = [...guessList, guess];
     setGuessList(nextGuessList);
-    const isGameWon = checkGuess(guess, answer);
+    const isGameWon = checkGuess(guess, answer); /**compare guess and answer */
     if (isGameWon) {
       addToast(`Game won in ${guessList.length + 1} tries`, "success", true);
       setGameStatus("won");
@@ -66,23 +68,31 @@ function GameProvider({ children }) {
       setGameStatus("lost");
     }
   };
+
+  /**user input guess in GuessInput */
   const handleGuessInput = (event) => {
     setGuess(event.target.value.toUpperCase());
   };
+
+  /**User tries to add guess, check if guess meets requirements */
   const handleSubmit = () => {
     if (guess.length < wordLength) {
       addToast("Check word length", "warning");
       return; /**Word limit not yet met */
     }
+
+    /**guess word not a valid word */
     if (!validGuess(guess)) {
       addToast("Word not found", "notice");
       setGuess("");
       return;
     }
+
     addGuess(guess);
     updateKeyboardStatus();
     setGuess("");
   };
+  /**update virtual keyboard based on guess character status */
   const updateKeyboardStatus = () => {
     const characters = getGuessStatus(guess, answer);
     const nextKeyboardStatus = { ...keyboardStatus };

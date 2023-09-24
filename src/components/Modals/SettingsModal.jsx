@@ -11,8 +11,11 @@ function SettingsModal({ handleDismiss }) {
     setNumofChances,
     setGameStatus,
   } = React.useContext(AppContext);
+
+  /**user defined wordLength, and number of tries */
   const [userWordLength, setUserWordLength] = React.useState(wordLength);
   const [userNumOfChances, setUserNumOfChances] = React.useState(numOfChances);
+
   const handleSubmit = (event) => {
     event.preventDefault(); /**avoid page from reloading */
     setWordLength(userWordLength); /**update character limit of word */
@@ -31,6 +34,7 @@ function SettingsModal({ handleDismiss }) {
           id="word-length"
           value={userWordLength}
           onChange={(event) => setUserWordLength(event.target.value)}
+          /**clamp user wordLength range */
           min={3}
           max={8}
         />

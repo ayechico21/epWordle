@@ -5,8 +5,11 @@ export const ToastContext = React.createContext();
 
 function ToastProvider({ children }) {
   const { gameStatus } = React.useContext(AppContext);
-  const [toasts, setToasts] = React.useState([]);
+  const [toasts, setToasts] = React.useState(
+    []
+  ); /**store all toast notifications */
 
+  /**if game ended, reset notifications */
   React.useEffect(() => {
     if (gameStatus === "end") setToasts([]);
   }, [gameStatus]);

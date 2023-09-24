@@ -11,7 +11,8 @@ import { AppContext } from "../Providers/AppProvider";
 
 function Header() {
   const { setGameStatus } = React.useContext(AppContext);
-  const [isInfo, toggleInfo] = useToggle(false);
+  const [isInfo, toggleInfo] =
+    useToggle(false); /**vy default, Modal is not shown */
   const [isSettings, toggleSettings] = useToggle(false);
 
   return (

@@ -76,7 +76,7 @@ const Cell = styled.span`
   margin-right: 5px;
 `;
 const Footnote = styled.footer`
-  margin: 0 auto;
+  margin: 0 auto; /**center footer */
 `;
 const Link = styled.a`
   text-decoration: none;

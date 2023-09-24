@@ -28,7 +28,7 @@ function ToastShelf() {
   );
 }
 const Wrapper = styled.ol`
-  position: absolute;
+  position: absolute; /**positioning based on nearest positioned parent */
   right: 0;
   bottom: 10px;
   display: flex;
@@ -38,6 +38,7 @@ const Wrapper = styled.ol`
   list-style-type: none;
 `;
 
+/**Animations */
 const slideIn = keyframes`
 from {
       transform: translateX(calc(100% + 64px));
