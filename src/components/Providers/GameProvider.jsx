@@ -44,6 +44,7 @@ function GameProvider({ children }) {
     INITIAL_KEYBOARD_STATE
   );
 
+  /**add new guess to guess list */
   const addGuess = (guess) => {
     const nextGuessList = [...guessList, guess];
     setGuessList(nextGuessList);

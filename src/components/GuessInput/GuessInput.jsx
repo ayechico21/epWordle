@@ -4,12 +4,21 @@ import { COLORS } from "../../constants";
 import { GameContext } from "../Providers/GameProvider";
 
 function GuessInput() {
-  const { guess } = React.useContext(GameContext);
+  const { guess, handleGuessInput } = React.useContext(GameContext);
 
   return (
     <Wrapper>
       <p>Your Guess: </p>
-      <Input type="text" value={guess} readOnly={true} />
+      <Input
+        type="text"
+        value={guess}
+        onChange={(e) => {
+          handleGuessInput(e);
+        }}
+        onKeyDown={(event) =>
+          event.preventDefault()
+        } /**avoid keydown event causing guess updated twice */
+      />
     </Wrapper>
   );
 }
